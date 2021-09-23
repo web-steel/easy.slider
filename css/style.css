@@ -35,6 +35,9 @@ body {
   align-items: center;
   justify-content: center;
   color: #fff;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
 }
 
 .sidebar h1 {
@@ -53,11 +56,16 @@ body {
 }
 
 .main-slide > div {
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center center;
   height: 100%;
   width: 100%;
+  position: relative;
+}
+
+.main-slide > div video {
+  width: 100%;
+  height: 100vh;
+  object-fit: cover;
+  z-index: 1;
 }
 
 button {
@@ -77,21 +85,32 @@ button:focus {
   outline: none;
 }
 
-.container .controls button {
-  position: absolute;
-  left: 35%;
-  top: 50%;
+.container .controls {
+  position: fixed;
+  left: 37%;
+  top: 3%;
   z-index: 100;
+  display: flex;
+}
+
+.container .controls button {
+  width: 44px;
 }
 
 .container .controls .down-button {
-  transform: translateX(-100%);
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
 }
 
 .container .controls .up-button {
-  transform: translateY(-100%);
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
+}
+
+.content {
+  position: absolute;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.65);
+  color: #f1f1f1;
+  padding: 20px;
 }
