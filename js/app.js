@@ -9,7 +9,6 @@ const slides = mainSlide.querySelectorAll('.main-slide > div')
 let activeSlideIndex = slides.length - 1
 let activeVideo = getActiveVideoByIndex(0)
 
-activeVideo.autoplay = true
 sidebar.style.top = `-${activeSlideIndex * 100}vh`
 
 const upButton = document.querySelector('.up-button')
