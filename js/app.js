@@ -1,15 +1,35 @@
 const DOWN = 'DOWN'
 const UP = 'UP'
 
+const body = document.querySelector('body')
+
+body.addEventListener('keyup', (event) => {
+  event.preventDefault()
+
+  if (event.code === 'ArrowDown' || event.code === 'ArrowUp') {
+    changeSlide(event.code === 'ArrowDown' ? DOWN : UP)
+  }
+
+  if(event.code === 'Space') {
+    toggleRunVideo()
+  }
+
+  if(event.code === 'Enter') {
+    toggleVolumeVideo()
+  }
+})
+
 const sidebar = document.querySelector('.sidebar')
 const mainSlide = document.querySelector('.main-slide')
 const container = document.querySelector('.container')
 const slides = mainSlide.querySelectorAll('.main-slide > div')
+const slidesCount = slides.length
 
-let activeSlideIndex = slides.length - 1
+let activeSlideIndex = 0
 let activeVideo = getActiveVideoByIndex(0)
 
-sidebar.style.top = `-${activeSlideIndex * 100}vh`
+activeVideo.addEventListener('loadeddata', () => activeVideo.play())
+sidebar.style.top = `-${(slidesCount - 1) * 100}vh`
 
 const upButton = document.querySelector('.up-button')
 const downButton = document.querySelector('.down-button')
@@ -36,7 +56,7 @@ function changeSlide(direction) {
   if (direction === UP) {
     activeSlideIndex++
 
-    if (activeSlideIndex >= slides.length) {
+    if (activeSlideIndex === slidesCount) {
       activeSlideIndex = 0
     }
   }
@@ -45,7 +65,7 @@ function changeSlide(direction) {
     activeSlideIndex--
 
     if (activeSlideIndex < 0) {
-      activeSlideIndex = slides.length - 1
+      activeSlideIndex = slidesCount - 1
     }
   }
 
